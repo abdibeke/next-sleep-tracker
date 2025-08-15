@@ -1,18 +1,63 @@
 import React from "react";
 import { currentUser } from "@clerk/nextjs/server";
 import Guest from "@/components/Guest";
+import AddNewRecord from "@/components/AddNewRecord";
+import Image from "next/image";
 
 export default async function page() {
   const user = await currentUser();
-  if (!user) {
-    return <Guest />;
-  }
+  if (!user) return <Guest />;
+
   return (
-    <div className="flex flex-col items-center mt-10">
-      <h1 className="text-4xl font-bold text-amber-400 mb-4">Sleep Tracker</h1>
-      <p className="text-lg text-amber-200">
-        Monitor your rest, improve your life
-      </p>
-    </div>
+    <main className="bg-gray-100 text-gray-800 font-sans min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Left Column */}
+        <div className="space-y-6">
+          <div className="bg-white p-6 rounded-lg shadow-md flex flex-col sm:flex-row items-center sm:items-start gap-6">
+            <div className="rounded-full border border-gray-300">
+              <Image
+                src={user.imageUrl}
+                alt={`${user.firstName}'s profile`}
+                width={128}
+                height={128}
+                className="rounded-full shadow-md object-cover"
+                priority
+              />
+            </div>
+
+            <div className="flex-1">
+              <h2 className="text-2xl md:text-3xl font-bold text-[#f4a261] mb-2">
+                Welcome Back, {user.firstName} 👋
+              </h2>
+              <p className="text-gray-600 mb-4">
+                Here is a quick overview of your recent sleep activity.
+              </p>
+              <div className="space-y-2">
+                <p className="text-gray-600">
+                  <span className="font-semibold text-gray-800">Joined:</span>{" "}
+                  {new Date(user.createdAt).toLocaleDateString()}
+                </p>
+                <p className="text-gray-600">
+                  <span className="font-semibold text-gray-800">
+                    Last Active:
+                  </span>{" "}
+                  {user.lastActiveAt
+                    ? new Date(user.lastActiveAt).toLocaleString()
+                    : "N/A"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Add New Sleep Record */}
+          <AddNewRecord />
+        </div>
+
+        {/* Right Column */}
+        <div className="space-y-6">
+          {/* Future placeholders: RecordStats, Insights, etc. */}
+        </div>
+      </div>
+    </main>
   );
 }
