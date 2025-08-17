@@ -4,6 +4,7 @@ import Guest from "@/components/Guest";
 import AddNewRecord from "@/components/AddNewRecord";
 import Image from "next/image";
 import RecordChart from "@/components/RecordChart";
+import AverageSleep from "@/components/AverageSleep";
 
 export default async function page() {
   const user = await currentUser();
@@ -57,6 +58,7 @@ export default async function page() {
         {/* Right Column */}
         <div className="space-y-6">
           <RecordChart  />
+          <AverageSleep />
         </div>
       </div>
     </main>
