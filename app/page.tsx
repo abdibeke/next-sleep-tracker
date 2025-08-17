@@ -6,6 +6,7 @@ import Image from "next/image";
 import RecordChart from "@/components/RecordChart";
 import AverageSleep from "@/components/AverageSleep";
 import BestWorstSleep from "@/components/BestWorstSleep";
+import RecordHistory from "@/components/RecordHistory";
 
 export default async function page() {
   const user = await currentUser();
@@ -58,10 +59,13 @@ export default async function page() {
 
         {/* Right Column */}
         <div className="space-y-6">
-          <RecordChart  />
+          <RecordChart />
           <AverageSleep />
           <BestWorstSleep />
         </div>
+      </div>
+      <div className="max-w-7xl mx-auto">
+        <RecordHistory />
       </div>
     </main>
   );
