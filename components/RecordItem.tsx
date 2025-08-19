@@ -15,11 +15,9 @@ const RecordItem = ({ record }: { record: Record }) => {
 
   return (
     <li
-      className={`flex justify-between items-center bg-white p-4 rounded-lg shadow-md mb-4 border-t border-t-gray-100 ${
-        record?.amount < 7
-          ? "border-l-4 border-[#e76f51]" 
-          : "border-l-4 border-[#2a9d8f]"
-      }`}
+      className={`flex justify-between items-center bg-white p-4 rounded-xl shadow-md mb-4 border-l-4 transition ${
+        record?.amount < 7 ? "border-[#e76f51]" : "border-[#2a9d8f]"
+      } hover:shadow-lg`}
     >
       <div className="flex flex-col">
         <span className="text-sm text-gray-500">
@@ -33,7 +31,6 @@ const RecordItem = ({ record }: { record: Record }) => {
         </span>
       </div>
 
-      {/* Delete Button */}
       <button
         onClick={() => handleDeleteRecord(record.id)}
         disabled={isLoading}

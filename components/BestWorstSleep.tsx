@@ -1,14 +1,15 @@
-import getBestWorstSleep from '@/app/actions/getBestWorstSleep';
+import getBestWorstSleep from "@/app/actions/getBestWorstSleep";
 
 const BestWorstSleep = async () => {
   const { bestSleep, worstSleep } = await getBestWorstSleep();
 
   return (
-    <div className="bg-gray-100 flex items-center justify-center">
-      <div className="bg-white shadow-lg rounded-lg p-8 w-full">
-        <h3 className="text-2xl font-bold text-center mb-6 text-[#f4a261]">
+    <div className="bg-[#eef0f7] flex items-center justify-center">
+      <div className="bg-white shadow-lg rounded-xl p-8 w-full transition hover:shadow-2xl">
+        <h3 className="text-2xl font-medium text-center mb-6 text-gray-600">
           Best and Worst Sleep
         </h3>
+
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-6 sm:space-y-0">
           {/* Best Sleep */}
           <div className="text-center">
@@ -18,7 +19,7 @@ const BestWorstSleep = async () => {
             <p className="text-3xl font-bold text-[#2a9d8f]">
               {bestSleep !== undefined
                 ? `${bestSleep} hours`
-                : 'No data available'}
+                : "No data available"}
             </p>
           </div>
 
@@ -33,7 +34,7 @@ const BestWorstSleep = async () => {
             <p className="text-3xl font-bold text-[#e76f51]">
               {worstSleep !== undefined
                 ? `${worstSleep} hours`
-                : 'No data available'}
+                : "No data available"}
             </p>
           </div>
         </div>
